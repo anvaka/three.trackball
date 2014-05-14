@@ -1,6 +1,7 @@
 # three.trackball
 
-Adaptation of three.js trackball control to commonjs module
+Adaptation of three.js [trackball control](http://threejs.org/examples/#misc_controls_trackball)
+to commonjs module
 
 # install
 

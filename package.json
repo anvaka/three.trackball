@@ -1,6 +1,6 @@
 {
   "name": "three.trackball",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Adaptation of three.js trackball control to commonjs module",
   "main": "index.js",
   "scripts": {

@@ -576,7 +576,7 @@ function Trackball( object, domElement ) {
 
 	}
 
-	this.domElement.addEventListener( 'contextmenu', function ( event ) { event.preventDefault(); }, false );
+	this.domElement.addEventListener( 'contextmenu', preventEvent, false );
 
 	this.domElement.addEventListener( 'mousedown', mousedown, false );
 
@@ -590,10 +590,28 @@ function Trackball( object, domElement ) {
 	window.addEventListener( 'keydown', keydown, false );
 	window.addEventListener( 'keyup', keyup, false );
 
+  this.dispose = function () {
+    var domElement = _this.domElement;
+    domElement.removeEventListener('contextmenu', preventEvent);
+    domElement.removeEventListener('mousedown', mousedown);
+    domElement.removeEventListener('mousewheel', mousewheel);
+    domElement.removeEventListener('DOMMouseScroll', mousewheel);
+    domElement.removeEventListener('touchstart', touchstart);
+    domElement.removeEventListener('touchend', touchend);
+    domElement.removeEventListener('touchmove', touchmove);
+
+		document.removeEventListener( 'mousemove', mousemove);
+		document.removeEventListener( 'mouseup', mouseup);
+    window.removeEventListener('keydown', keydown);
+    window.removeEventListener('keyup', keyup);
+  };
+
 	this.handleResize();
 
 	// force an update at start
 	this.update();
 }
+
+function preventEvent( event ) { event.preventDefault(); }
 
 Trackball.prototype = Object.create(THREE.EventDispatcher.prototype);
